@@ -23,6 +23,6 @@ class app-stack {
     ensure => installed,
     provider => rpm,
     source => "http://download.opensuse.org/repositories/home:/SannisDev/CentOS_CentOS-5/x86_64/nodejs-0.4.7-2.1.x86_64.rpm",
-    require => [Package["libv8"], Package["libev"]],
+    require => [Package["libv8-3.x86_64"], Package["libev"]],
   }
 }
