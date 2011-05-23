@@ -7,6 +7,12 @@ class app-stack {
       mode => 644,
   }
   
+  package {"libev":
+    ensure => installed,
+    provider => rpm,
+    source => "https://build.opensuse.org/package/binary?arch=x86_64&filename=libev4-4.01-6.1.x86_64.rpm&package=libev&project=home%3Aweberho%3Aqmail-ng-unstable&repository=CentOS-5",
+  }
+  
   package {"libv8":
     ensure => installed,
     provider => rpm,
@@ -17,6 +23,6 @@ class app-stack {
     ensure => installed,
     provider => rpm,
     source => "http://download.opensuse.org/repositories/home:/SannisDev/CentOS_CentOS-5/x86_64/nodejs-0.4.7-2.1.x86_64.rpm",
-    require => Package["libv8"],
+    require => [Package["libv8"], Package["libev"]],
   }
 }
