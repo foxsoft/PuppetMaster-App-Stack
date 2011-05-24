@@ -7,12 +7,24 @@ class app-stack {
       mode => 644,
   }
   
-#  package {"libev":
-#    ensure => installed,
-#    provider => rpm,
-#    source => "http://download.opensuse.org/repositories/openSUSE:/Tools/openSUSE_11.3/x86_64/libev4-4.01-7.1.x86_64.rpm",
-#  }
-#  
+  package {"libev4.x86_64":
+    ensure => installed,
+    provider => rpm,
+    source => "puppet:///puppet-app-stack/libev4-4.04-4.5.x86_64.rpm",
+  }
+  
+  package {"libev-devel.x86_64":
+    ensure => installed,
+    provider => rpm,
+    source => "puppet:///puppet-app-stack/libev-devel-4.04-4.5.x86_64.rpm"
+  }
+  
+  package {"libev-debuginfo.x86_64":
+    ensure => installed,
+    provider => rpm,
+    source => "puppet:///puppet-app-stack/libev-debuginfo-4.04-4.5.x86_64.rpm"
+  }
+  
 #  package {"libv8-3.x86_64":
 #    ensure => installed,
 #    provider => rpm,
