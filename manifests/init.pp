@@ -42,7 +42,7 @@ class app-stack {
     require => [Package["libv8-3.x86_64"], Package["libev4.x86_64"], Package["libev-debuginfo.x86_64"], Package["libev-devel.x86_64"], Package["c-ares"]],
   }
   
-  file {"/usr/bin/nodejs",
+  file {"/usr/bin/nodejs":
     ensure => "/usr/bin/node",
   }
 }
