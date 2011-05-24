@@ -7,6 +7,10 @@ class app-stack {
       mode => 644,
   }
   
+  package {"c-ares":
+    ensure => installed
+  }
+  
   package {"libev4.x86_64":
     ensure => installed,
     provider => rpm,
@@ -35,6 +39,6 @@ class app-stack {
     ensure => installed,
     provider => rpm,
     source => "http://download.opensuse.org/repositories/home:/SannisDev/CentOS_CentOS-5/x86_64/nodejs-0.4.7-2.1.x86_64.rpm",
-    require => [Package["libv8-3.x86_64"], Package["libev4.x86_64"], Package["libev-debuginfo.x86_64"], Package["libev-devel.x86_64"]],
+    require => [Package["libv8-3.x86_64"], Package["libev4.x86_64"], Package["libev-debuginfo.x86_64"], Package["libev-devel.x86_64"], Package["c-ares"]],
   }
 }
