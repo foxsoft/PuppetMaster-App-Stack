@@ -10,19 +10,19 @@ class app-stack {
   package {"libev4.x86_64":
     ensure => installed,
     provider => rpm,
-    source => "puppet:///modules/app-stack/libev4-4.04-4.5.x86_64.rpm",
+    source => "http://puppet.foxsoft.co.uk/centos/5/custom/libev4-4.04-4.5.x86_64.rpm",
   }
   
   package {"libev-devel.x86_64":
     ensure => installed,
     provider => rpm,
-    source => "puppet:///modules/app-stack/libev-devel-4.04-4.5.x86_64.rpm"
+    source => "http://puppet.foxsoft.co.uk/centos/5/custom/libev-devel-4.04-4.5.x86_64.rpm"
   }
   
   package {"libev-debuginfo.x86_64":
     ensure => installed,
     provider => rpm,
-    source => "puppet:///modules/app-stack/libev-debuginfo-4.04-4.5.x86_64.rpm"
+    source => "http://puppet.foxsoft.co.uk/centos/5/custom/libev-debuginfo-4.04-4.5.x86_64.rpm"
   }
   
 #  package {"libv8-3.x86_64":
