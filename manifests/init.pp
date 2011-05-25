@@ -60,10 +60,10 @@ class app-stack {
     require => Package["httpd"],
   }
   
-  exec {"passenger-install:"
+  exec {"passenger-install":
     command => "rvm 1.9.2@global && sudo gem install passenger -v=3.0.7 && yes | passenger-install-apache2-module",
     require => Package["mod_ssl"],
-    unless => "gem list | grep passenger"
+    unless => "gem list | grep passenger",
   }
   
 }
