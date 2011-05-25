@@ -55,7 +55,7 @@ class app-stack {
     require => Package["httpd"],
   }
   
-  package {"mod-ssl":
+  package {"mod_ssl":
     ensure => installed,
     require => Package["httpd"],
   }
