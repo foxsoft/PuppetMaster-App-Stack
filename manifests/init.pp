@@ -60,10 +60,14 @@ class app-stack {
     require => Package["httpd"],
   }
   
-  exec {"passenger-install":
-    command => "rvm 1.9.2@global && sudo gem install passenger -v=3.0.7 && yes | passenger-install-apache2-module",
-    require => Package["mod_ssl"],
-    unless => "gem list | grep passenger",
-  }
+  $ruby_version = "1.9.2"
+  $rvm_prefix = "/usr/local/"
+  $gempath = "${rvm_prefix}rvm/gems/${ruby_version}/gems"
+  $binpath = "${rvm_prefix}rvm/bin/"
   
+  exec {"passenger-install-apache2-module":
+    command => "${binpath}rvm ${ruby_version} exec passenger-install-apache2-module -a",
+    creates => "${gempath}/passenger-${version}/ext/apache2/mod_passenger.so",
+    logoutput => 'on_failure',
+  }
 }
