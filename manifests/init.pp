@@ -45,4 +45,19 @@ class app-stack {
   file {"/usr/bin/nodejs":
     ensure => "/usr/bin/node",
   }
+  
+  package {"httpd":
+    ensure => installed,
+  }
+  
+  package {"httpd-devel":
+    ensure => installed,
+    require => Package["httpd"],
+  }
+  
+  package {"mod-ssl"
+    ensure => installed,
+    require => Package["httpd"],
+  }
+  
 }
