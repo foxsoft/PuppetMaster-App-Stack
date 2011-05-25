@@ -60,14 +60,13 @@ class app-stack {
     require => Package["httpd"],
   }
   
-  $ruby_version = "1.9.2"
-  $rvm_prefix = "/usr/local/"
-  $gempath = "${rvm_prefix}rvm/gems/${ruby_version}/gems"
-  $binpath = "${rvm_prefix}rvm/bin/"
-  
-  exec {"passenger-install-apache2-module":
-    command => "${binpath}rvm ${ruby_version} exec passenger-install-apache2-module -a",
-    creates => "${gempath}/passenger-${version}/ext/apache2/mod_passenger.so",
-    logoutput => 'on_failure',
+  class {
+    'rvm::passenger::apache':
+      version => '3.0.7',
+      ruby_version => 'ruby-1.9.2-p180',
+      mininstances => '3',
+      maxinstancesperapp => '0',
+      maxpoolsize => '30',
+      spawnmethod => 'smart-lv2';
   }
 }
