@@ -19,6 +19,7 @@ class app-stack {
   
   package {"libev-devel.x86_64":
     ensure => installed,
+    require => Package["libev4.x86_64"],
     provider => rpm,
     source => "http://puppet.foxsoft.co.uk/centos/5/custom/libev-devel-4.04-4.5.x86_64.rpm"
   }
