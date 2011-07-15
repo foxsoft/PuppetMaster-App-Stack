@@ -61,6 +61,11 @@ class app-stack {
     require => Package["httpd"],
   }
   
+  package {"mod_xsendfile":
+    ensure => installed,
+    require => Package["httpd"],
+  }
+  
   class {
     'rvm::passenger::apache':
       version => '3.0.7',
