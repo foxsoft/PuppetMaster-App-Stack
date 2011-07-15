@@ -65,14 +65,4 @@ class app-stack {
     ensure => installed,
     require => Package["httpd"],
   }
-  
-  class {
-    'rvm::passenger::apache':
-      version => '3.0.7',
-      ruby_version => 'ruby-1.9.2-p180',
-      mininstances => '3',
-      maxinstancesperapp => '0',
-      maxpoolsize => '30',
-      spawnmethod => 'smart-lv2';
-  }
 }
