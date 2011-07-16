@@ -47,19 +47,31 @@ class app-stack {
     ensure => "/usr/bin/node",
   }
   
-  package {"httpd":
-    ensure => installed,
+  if ! defined(Package["httpd"]) {
+    package {"httpd":
+      ensure => installed,
+    }
   }
   
-  package {"httpd-devel":
-    ensure => installed,
+  if ! defined(Package["httpd-devel"]) {
+    package {"httpd-devel":
+      ensure => installed,
+      require => Package["httpd"],
+    }
   }
   
-  package {"mod_ssl":
-    ensure => installed,
+  if ! defined(Package["mod_ssl"]) {
+    package {"mod_ssl":
+      ensure => installed,
+      require => Package["httpd"],
+    }
   }
   
-  package {"mod_xsendfile":
-    ensure => installed,
+  
+  if ! defined(Package["mod_xsendfile"]) {
+    package {"mod_xsendfile":
+      ensure => installed,
+      require => Package["httpd"],
+    }
   }
 }
