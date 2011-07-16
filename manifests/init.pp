@@ -53,16 +53,13 @@ class app-stack {
   
   package {"httpd-devel":
     ensure => installed,
-    require => Package["httpd"],
   }
   
   package {"mod_ssl":
     ensure => installed,
-    require => Package["httpd"],
   }
   
   package {"mod_xsendfile":
     ensure => installed,
-    require => Package["httpd"],
   }
 }
