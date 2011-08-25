@@ -47,9 +47,8 @@ class app-stack {
     ensure => "/usr/bin/node",
   }
 
-  package {"epel":
-	ensure => installed,
-	provider => rpm,
-	source => "http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm"
+  create {"install-epel":
+	command => "rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm",
+	creates => "/etc/yum.repos.d/epel.repo"
   }
 }
