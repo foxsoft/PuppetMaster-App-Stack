@@ -46,32 +46,10 @@ class app-stack {
   file {"/usr/bin/nodejs":
     ensure => "/usr/bin/node",
   }
-  
-  if ! defined(Package["httpd"]) {
-    package {"httpd":
-      ensure => installed,
-    }
-  }
-  
-  if ! defined(Package["httpd-devel"]) {
-    package {"httpd-devel":
-      ensure => installed,
-      require => Package["httpd"],
-    }
-  }
-  
-  if ! defined(Package["mod_ssl"]) {
-    package {"mod_ssl":
-      ensure => installed,
-      require => Package["httpd"],
-    }
-  }
-  
-  
-  if ! defined(Package["mod_xsendfile"]) {
-    package {"mod_xsendfile":
-      ensure => installed,
-      require => Package["httpd"],
-    }
+
+  package {"epel":
+	ensure => installed,
+	provider => rpm
+	source => "http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm"
   }
 }
