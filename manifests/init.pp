@@ -49,7 +49,7 @@ class app-stack {
 
   package {"epel":
 	ensure => installed,
-	provider => rpm
+	provider => rpm,
 	source => "http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm"
   }
 }
