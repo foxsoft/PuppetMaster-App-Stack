@@ -51,4 +51,17 @@ class app-stack {
 	  command => "/bin/rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm",
 	  creates => "/etc/yum.repos.d/epel.repo"
   }
+  
+  file {"/etc/init.d/puppet-agent":
+    ensure => present,
+    mode   => 0755,
+    owner  => "root",
+    source => "puppet:///app-stack/puppet-agent",
+  }
+  
+  service {"puppet-agent":
+    ensure => running,
+    enable => true,
+    require => File["/etc/init.d/puppet-agent"]
+  }
 }

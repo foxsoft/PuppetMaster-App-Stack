@@ -1,0 +1,76 @@
+#!/bin/bash
+#
+# puppet-agent    This shell script takes care of starting and stopping puppetd (The puppet agent daemon)
+# 
+# chkconfig: - 98 02
+# description: Puppet is a configuration management daemon
+
+# Author: Omar Qureshi <omar@omarqureshi.net>
+
+PIDFILE=/var/lib/puppet/run/agent.pid
+PATH=/usr/bin:/sbin:/bin:/usr/sbin
+export PATH
+
+# source functions
+. /etc/rc.d/init.d/functions
+
+# Load RVM into a shell session *as a function*
+if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+  # First try to load from a user install
+  source "$HOME/.rvm/scripts/rvm"
+elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+  # Then try to load from a root install
+  source "/usr/local/rvm/scripts/rvm"
+else
+  printf "ERROR: An RVM installation was not found.\n"
+fi
+
+CURRENT_RUBY=`rvm current`
+
+
+start() {
+    echo -n "Starting puppet agent daemon: "
+    if [ -f $PIDFILE ]; then
+	echo
+	echo "puppet agent daemon already running: `cat $PIDFILE`"
+	exit 2;
+    else
+	rvm ree@puppet
+	daemon  puppetd --server puppetmaster.foxsoft.local
+	echo
+	return 0;
+    fi
+}
+
+stop() {
+    echo -n "Shutting down puppet agent daemon: "
+    echo
+    killproc puppetd
+    echo
+    return 0;
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status puppetd
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage:  {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $?
+
+
+
+rvm $CURRENT_RUBY
