@@ -48,7 +48,7 @@ class app-stack {
   }
 
   exec {"install-epel":
-	  command => "rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm",
+	  command => "/bin/rpm -Uvh http://download.fedora.redhat.com/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm",
 	  creates => "/etc/yum.repos.d/epel.repo"
   }
 }
