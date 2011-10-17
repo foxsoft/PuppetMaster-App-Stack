@@ -1,6 +1,6 @@
 class app-stack {
   yumrepo { "Omar":
-     baseurl => "http://yum.omarqureshi.net/$operatingsystem/$operatingsystemrelease/custom/$architecture",
+     baseurl => "http://yum.omarqureshi.net/Centos/5/custom/$architecture",
      descr => "Omar",
      enabled => 1,
      gpgcheck => 0
