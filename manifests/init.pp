@@ -7,6 +7,7 @@ class app-stack {
   }
   
   package { "ImageMagick": ensure => installed, require => Yumrepo["Omar"] }
+  package { "ImageMagick-devel": ensure => installed, require => Yumrepo["Omar"] }
   package { "c-ares": ensure => installed }  
   package { "libev4.x86_64": ensure => installed, require => Yumrepo["Omar"] }
   package { "libev-devel.x86_64": ensure => installed, require => [Package["libev4.x86_64"], Yumrepo["Omar"]] }
