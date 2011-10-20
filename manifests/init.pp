@@ -6,8 +6,9 @@ class app-stack {
      gpgcheck => 0
   }
   
-  package { "ImageMagick": ensure => installed, require => Yumrepo["Omar"] }
-  package { "ImageMagick-devel": ensure => installed, require => Yumrepo["Omar"] }
+  package { "libtool-ltdl-devel": ensure => installed }
+  package { "fontconfig-devel": ensure => installed }
+  package { "ImageMagick-devel": ensure => installed, require => [Yumrepo["Omar"], Package["libtool-ltdl-devel"], Package["fontconfig-devel"]] }
   package { "c-ares": ensure => installed }  
   package { "libev4.x86_64": ensure => installed, require => Yumrepo["Omar"] }
   package { "libev-devel.x86_64": ensure => installed, require => [Package["libev4.x86_64"], Yumrepo["Omar"]] }
